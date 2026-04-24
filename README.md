@@ -1,2 +1,2 @@
-Cafe-Spot-Location-based Cafe Finder
+**Cafe-Spot-Location-based Cafe Finder
  
