@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CafeSpot — Find cafes near you</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── HEADER / HERO ── -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-brand">
+        <h1 class="logo">CafeSpot</h1>
+        <p class="tagline">Find cafes &amp; restaurants near you in Sydney</p>
+      </div>
+      <div class="search-row">
+        <input
+          id="locInput"
+          class="search-input"
+          type="text"
+          placeholder="Enter suburb (e.g. Newtown, Surry Hills…)"
+          value="Newtown"
+          autocomplete="off"
+        />
+        <button id="searchBtn" class="search-btn" onclick="doSearch()">Search</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── MAIN LAYOUT ── -->
+  <main class="layout">
+
+    <!-- LEFT: list panel -->
+    <section class="list-panel">
+
+      <!-- Filter chips -->
+      <div class="filters" id="filters" role="group" aria-label="Filter cafes">
+        <button class="chip active" data-filter="all"     onclick="toggleFilter(this,'all')">All</button>
+        <button class="chip"        data-filter="wifi"    onclick="toggleFilter(this,'wifi')">Wi-Fi</button>
+        <button class="chip"        data-filter="outdoor" onclick="toggleFilter(this,'outdoor')">Outdoor seating</button>
+        <button class="chip"        data-filter="open"    onclick="toggleFilter(this,'open')">Open now</button>
+        <button class="chip"        data-filter="food"    onclick="toggleFilter(this,'food')">Food available</button>
+      </div>
+
+      <!-- Radius slider -->
+      <div class="radius-row">
+        <label class="radius-label" for="radiusSlider">Radius</label>
+        <input  id="radiusSlider" class="radius-slider" type="range" min="1" max="10" step="1" value="5" oninput="onRadiusChange(this.value)" />
+        <span   id="radiusVal" class="radius-val">5 km</span>
+      </div>
+
+      <!-- Results count -->
+      <p class="results-header" id="resultsHeader"></p>
+
+      <!-- Cafe cards -->
+      <div id="results" role="list"></div>
+
+    </section>
+
+    <!-- RIGHT: map panel -->
+    <section class="map-panel">
+      <div id="map" role="region" aria-label="Map of cafes"></div>
+      <div class="map-placeholder" id="mapPlaceholder">
+        <div class="map-placeholder-inner">
+          <span class="map-icon">&#9752;</span>
+          <p>Map will appear here</p>
+          <p class="map-note">Requires a Google Maps API key in script.js</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!--
+    Google Maps JavaScript API
+    Replace YOUR_API_KEY with your actual key.
+    The `callback=initMap` param fires initMap() once the script loads.
+    Keep `async defer` so it doesn't block page render.
+  -->
+  <!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
+  </script> -->
+
+  <script src="script.js"></script>
+
+</body>
+</html>
